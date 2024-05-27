@@ -12,10 +12,6 @@ return {
 		config = true,
 	},
 	{
-		"folke/neodev.nvim",
-		opts = {},
-	},
-	{
 		"neovim/nvim-lspconfig",
 		opts = {
 			diagnostics = {
