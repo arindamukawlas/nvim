@@ -53,8 +53,8 @@ vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin" .. (is_windows and ";" or 
 -- Scroll the screen instead of cursor on limit
 vim.opt.scrolloff = 8
 
--- Enable mouse support
-vim.opt.mouse = "a"
+-- Show mode on lualine only
+vim.opt.showmode = false
 
 vim.opt.incsearch = true
 vim.opt.hidden = true
