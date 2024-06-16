@@ -1,3 +1,7 @@
+-- Enable code folding powered by treesitter
+vim.opt.foldmethod = "manual"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+
 -- Set the Leader key
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
@@ -8,10 +12,6 @@ vim.g.loaded_netrwPlugin = 1
 
 -- Enable truecolor
 vim.opt.termguicolors = true
-
--- Enable code folding powered by treesitter
-vim.opt.foldmethod = "manual"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 -- Indenting
 vim.opt.shiftwidth = 4

@@ -33,6 +33,7 @@ return {
 		config = true,
 	},
 	{
+		cond = not vim.g.vscode,
 		"nvim-telescope/telescope-fzf-native.nvim",
 		build = "make",
 		init = function()
