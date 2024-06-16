@@ -54,7 +54,9 @@ vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin" .. (is_windows and ";" or 
 vim.opt.scrolloff = 8
 
 -- Show mode on lualine only
+if not vim.g.vscode then
 vim.opt.showmode = false
+end
 
 vim.opt.incsearch = true
 vim.opt.hidden = true
