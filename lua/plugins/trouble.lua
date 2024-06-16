@@ -1,4 +1,5 @@
 return {
+	cond = not vim.g.vscode,
 	"folke/trouble.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()

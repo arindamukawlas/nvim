@@ -1,5 +1,6 @@
 return {
 	-- Treesitter
+	cond = not vim.g.vscode,
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
 	dependencies = {

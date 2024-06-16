@@ -1,4 +1,5 @@
 return {
+    cond = not vim.g.vscode,
     "nvim-tree/nvim-tree.lua",
 	cmd = { "NvimTreeToggle", "NvimTreeFocus" },
     dependencies = {

@@ -1,5 +1,6 @@
 return {
 	{
+		cond = not vim.g.vscode,
 		"nvim-telescope/telescope.nvim",
 		branch = "0.1.x",
 		dependencies = {

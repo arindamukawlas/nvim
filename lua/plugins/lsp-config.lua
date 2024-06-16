@@ -1,17 +1,21 @@
 return {
 	{
+		cond = not vim.g.vscode,
 		"williamboman/mason.nvim",
 		config = true,
 	},
 	{
+		cond = not vim.g.vscode,
 		"williamboman/mason-lspconfig.nvim",
 		config = true,
 	},
 	{
+		cond = not vim.g.vscode,
 		"j-hui/fidget.nvim",
 		config = true,
 	},
 	{
+		cond = not vim.g.vscode,
 		"neovim/nvim-lspconfig",
 		opts = {
 			diagnostics = {
