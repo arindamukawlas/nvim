@@ -4,7 +4,7 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 -- Set the Leader key
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.maplocalleader = "\\"
 
 -- Disable netrw
 vim.g.loaded_netrw = 1
@@ -26,7 +26,6 @@ vim.opt.smartcase = true
 
 -- Enable line numbers
 vim.opt.relativenumber = true
-vim.opt.numberwidth = 2
 vim.opt.number = true
 
 -- disable nvim intro
@@ -54,9 +53,9 @@ vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin" .. (is_windows and ";" or 
 vim.opt.scrolloff = 8
 
 -- Show mode on lualine only
-if not vim.g.vscode then
-vim.opt.showmode = false
-end
+--if not vim.g.vscode then
+--vim.opt.showmode = false
+--end
 
 vim.opt.incsearch = true
 vim.opt.hidden = true
