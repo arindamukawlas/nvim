@@ -13,7 +13,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 -- Enable mouse mode
-vim.opt.mouse = "a"
+vim.opt.mouse = "ar"
 
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
@@ -50,8 +50,17 @@ vim.opt.cursorlineopt = "number"
 vim.opt.scrolloff = 10
 
 -- Enable code folding powered by treesitter
-vim.opt.foldmethod = "manual"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldmethod = "expr"
+
+-- Syntax highlight first line of fold
+vim.opt.foldtext = ""
+
+-- Don't auto-fold
+vim.opt.foldlevel = 99
+
+-- Don't fold after 4 levels
+vim.opt.foldnestmax = 4
 
 -- Auto-save file on focus change
 vim.opt.autowrite = true
@@ -87,12 +96,10 @@ end
 -- in augroups, lua, perl, python, ruby, and javascript
 vim.g.vimsyn_embed = "lPj"
 
--- vim.opt.hidden = true
--- vim.opt.conceallevel = 0
-
 -- Configure how backspace works
 vim.opt.backspace = "indent,eol,start,nostop"
 
+-- Use system clipboard
 vim.opt.clipboard = "unnamed"
 
 -- CD to home when called without args
@@ -100,3 +107,6 @@ vim.opt.cdhome = true
 
 -- Confirm before abandoning unsaved changes
 vim.opt.confirm = true
+
+-- Increase max memory for pattern matching
+vim.opt.maxmempattern = 4000
