@@ -2,6 +2,14 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- disable perl and ruby default providers
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+
+-- Highlight embedded languages in the strings
+-- in lua, python, and javascript
+vim.g.vimsyn_embed = "lPj"
+
 -- Enable truecolor
 vim.opt.termguicolors = true
 
@@ -15,9 +23,23 @@ vim.opt.relativenumber = true
 -- Enable mouse mode
 vim.opt.mouse = "ar"
 
+-- Increase max memory for pattern matching
+vim.opt.maxmempattern = 4000
+
+-- Layout for default ruler
+vim.opt.rulerformat = "%30(%=\\ :b%n%y%m%r%w \\ %l,%c%V \\ %P%)"
+
+-- Set window title based on file
+vim.opt.title = true
+
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
 
+-- Use system clipboard
+vim.opt.clipboard = "unnamed"
+
+-- CD to home when called without args
+vim.opt.cdhome = true
 -- Save undo history
 vim.opt.undofile = true
 
@@ -25,8 +47,30 @@ vim.opt.undofile = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
+-- Allow smart case for tags
+vim.opt.tagcase = "followscs"
+
 -- Keep signcolumn on by default
 vim.opt.signcolumn = "yes"
+
+-- Enable code folding powered by treesitter
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldmethod = "expr"
+
+-- Syntax highlight first line of fold
+vim.opt.foldtext = ""
+
+-- Don't auto-fold
+vim.opt.foldlevel = 99
+
+-- Don't fold after 4 levels
+vim.opt.foldnestmax = 4
+
+-- Indicate line break
+vim.opt.showbreak = "+++ "
+
+-- Break lines at word boundaries
+vim.opt.linebreak = true
 
 -- Decrease update time
 vim.opt.updatetime = 250
@@ -49,29 +93,13 @@ vim.opt.cursorlineopt = "number"
 -- Scroll the screen instead of cursor on limit
 vim.opt.scrolloff = 10
 
--- Enable code folding powered by treesitter
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.opt.foldmethod = "expr"
-
--- Syntax highlight first line of fold
-vim.opt.foldtext = ""
-
--- Don't auto-fold
-vim.opt.foldlevel = 99
-
--- Don't fold after 4 levels
-vim.opt.foldnestmax = 4
-
 -- Auto-save file on focus change
 vim.opt.autowrite = true
 vim.opt.autoread = true
 
--- -- Disable netrw
--- vim.g.loaded_netrw = 1
--- vim.g.loaded_netrwPlugin = 1
-
 -- Indenting
 vim.opt.shiftwidth = 4
+vim.opt.shiftround = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.smarttab = true
@@ -82,31 +110,26 @@ vim.opt.breakindent = true
 --  Replace end of file ~ with nothing
 vim.opt.fillchars:append(",eob: ")
 
--- Disable nvim intro
+-- Disable nvim intro and search messages
 vim.opt.shortmess:append("sI")
-
--- vim.opt.whichwrap:append("<>[]hl")
-
--- disable some default providers
-for _, provider in ipairs({ "perl", "ruby" }) do
-	vim.g["loaded_" .. provider .. "_provider"] = 0
-end
-
--- Highlight embedded languages in the strings
--- in augroups, lua, perl, python, ruby, and javascript
-vim.g.vimsyn_embed = "lPj"
 
 -- Configure how backspace works
 vim.opt.backspace = "indent,eol,start,nostop"
 
--- Use system clipboard
-vim.opt.clipboard = "unnamed"
-
--- CD to home when called without args
-vim.opt.cdhome = true
-
 -- Confirm before abandoning unsaved changes
 vim.opt.confirm = true
 
--- Increase max memory for pattern matching
-vim.opt.maxmempattern = 4000
+-- Show extra info in autocomplete
+vim.opt.showfulltag = true
+
+-- Smooth scroll wrapped lines
+vim.opt.smoothscroll = true
+
+-- Spell check camel-cased words
+vim.opt.spelloptions = "camel"
+
+vim.opt.matchpairs:append("<:>,「:」,『:』,【:】,“:”,‘:’,《:》")
+
+vim.opt.tildeop = true
+
+vim.opt.completeopt:append("menuone")
