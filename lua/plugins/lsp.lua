@@ -8,7 +8,12 @@ return {
 			library = {
 				-- Load luvit types when the `vim.uv` word is found
 				{ path = "luvit-meta/library", words = { "vim%.uv" } },
+				"lazy.nvim",
+				"nvim-dap-ui",
 			},
+			enabled = function(root_dir)
+				return not vim.uv.fs_stat(root_dir .. "/.luarc.json")
+			end,
 		},
 	},
 	{ "Bilal2453/luvit-meta", lazy = true },
@@ -97,7 +102,6 @@ return {
 			--  - settings (table): Override the default settings passed when initializing the server.
 			--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 			local servers = {
-				rust_analyzer = {},
 				ts_ls = {},
 				lua_ls = {
 					-- cmd = {...},
@@ -129,6 +133,7 @@ return {
 						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 						require("lspconfig")[server_name].setup(server)
 					end,
+					["rust_analyzer"] = function() end,
 				},
 			})
 		end,

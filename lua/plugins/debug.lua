@@ -7,8 +7,7 @@ return {
 		"nvim-neotest/nvim-nio",
 		"williamboman/mason.nvim",
 		"jay-babu/mason-nvim-dap.nvim",
-
-		--"leoluz/nvim-dap-go",
+		"theHamsta/nvim-dap-virtual-text",
 	},
 	keys = function(_, keys)
 		local dap = require("dap")
@@ -36,9 +35,24 @@ return {
 
 		require("mason-nvim-dap").setup({
 			automatic_installation = true,
-			handlers = {},
-			ensure_installed = {},
+			handlers = {
+				function(config)
+					-- all sources with no handler get passed here
+					-- Keep original functionality
+					require("mason-nvim-dap").default_setup(config)
+				end,
+			},
+			ensure_installed = { "codelldb", "stylua", "jq" },
 		})
+
+		require("nvim-dap-virtual-text").setup({
+			enabled_commands = true, -- create commands DapVirtualTextEnable, DapVirtualTextDisable, DapVirtualTextToggle, (DapVirtualTextForceRefresh for refreshing when debug adapter did not notify its termination)
+			highlight_changed_variables = true, -- highlight changed values with NvimDapVirtualTextChanged, else always NvimDapVirtualText
+			highlight_new_as_changed = false, -- highlight new variables in the same way as changed variables (if highlight_changed_variables)
+			commented = true, -- prefix virtual text with comment string
+			only_first_definition = false, -- only show virtual text at first definition (if there are multiple)
+		})
+
 		dapui.setup({
 			icons = { expanded = "▾", collapsed = "▸", current_frame = "*" },
 			controls = {
@@ -56,8 +70,10 @@ return {
 			},
 		})
 
-		dap.listeners.after.event_initialized["dapui_config"] = dapui.open
-		dap.listeners.before.event_terminated["dapui_config"] = dapui.close
-		dap.listeners.before.event_exited["dapui_config"] = dapui.close
+		dap.listeners.before.attach.dapui_config = dapui.open
+		dap.listeners.before.launch.dapui_config = dapui.open
+		dap.listeners.after.event_initialized.dapui_config = dapui.open
+		dap.listeners.before.event_terminated.dapui_config = dapui.close
+		dap.listeners.before.event_exited.dapui_config = dapui.close
 	end,
 }

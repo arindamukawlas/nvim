@@ -40,6 +40,7 @@ vim.opt.clipboard = "unnamed"
 
 -- CD to home when called without args
 vim.opt.cdhome = true
+
 -- Save undo history
 vim.opt.undofile = true
 
@@ -133,3 +134,5 @@ vim.opt.matchpairs:append("<:>,「:」,『:』,【:】,“:”,‘:’,《:》")
 vim.opt.tildeop = true
 
 vim.opt.completeopt:append("menuone")
+
+vim.opt.colorcolumn = "80"

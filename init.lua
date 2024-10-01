@@ -28,5 +28,6 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	spec = { { import = "plugins" } },
 	install = { colorscheme = { "ayu-dark" } },
+	change_detection = { notify = false },
 	rocks = { enabled = false },
 })
