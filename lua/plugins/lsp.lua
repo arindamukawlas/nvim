@@ -102,7 +102,15 @@ return {
 			--  - settings (table): Override the default settings passed when initializing the server.
 			--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 			local servers = {
-				ts_ls = {},
+				denols = {
+					cmd_env = {
+						NO_COLOR = false,
+					},
+				},
+				ts_ls = {
+					root_dir = require("lspconfig").util.root_pattern("package.json"),
+					single_file_support = false,
+				},
 				lua_ls = {
 					-- cmd = {...},
 					-- filetypes = { ...},
