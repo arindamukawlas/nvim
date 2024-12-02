@@ -8,6 +8,7 @@ return {
 		"williamboman/mason.nvim",
 		"jay-babu/mason-nvim-dap.nvim",
 		"theHamsta/nvim-dap-virtual-text",
+		"nvim-telescope/telescope-dap.nvim",
 	},
 	keys = function(_, keys)
 		local dap = require("dap")

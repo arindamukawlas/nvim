@@ -124,13 +124,45 @@ return {
 						},
 					},
 				},
+				gopls = {
+					cmd = { "gopls" },
+					filetypes = { "go", "gomod", "gowork", "gotmpl" },
+					root_dir = require("lspconfig").util.root_pattern("go.work", "go.mod", ".git"),
+					settings = {
+						gopls = {
+							completeUnimported = true,
+							analyses = {
+								unusedparams = true,
+							},
+						},
+					},
+				},
+				nil_ls = {
+					settings = {
+						["nil"] = {
+							formatting = {
+								command = { "nixfmt" },
+							},
+						},
+					},
+				},
 			}
 
 			require("mason").setup()
 
 			local ensure_installed = vim.tbl_keys(servers or {})
 			vim.list_extend(ensure_installed, {
-				"stylua", -- Used to format Lua code
+				"stylua", -- Lua Formatter
+				"codelldb", -- Rust, C, C++ Debugger
+				"denols", -- Deno LSP
+				"eslint", -- JS Linter
+				"gopls", -- Go LSP
+				"js-debug-adapter", -- JS Debugger
+				"lua_ls", -- Lua LSP
+				"prettier", -- General Formatter
+				"rust_analyzer", -- Rust LSP
+				"ts_ls", -- TS LSP
+				"nil_ls", -- Nix LSP
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
